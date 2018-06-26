@@ -2,8 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/pages/Home'
-import Welcome from '@/pages/Welcome'
-import Coins from '@/pages/Coins'
+import Cart from '@/pages/Cart'
+// import Index from '@/pages/Admin'
+
+// Admin Components
+import Index from '@/pages/admin/Index'
+import New from '@/pages/admin/New'
+import Products from '@/pages/admin/Products'
+import Edit from '@/pages/admin/Edit'
+
 
 Vue.use(Router)
 
@@ -15,14 +22,32 @@ export default new Router({
       component: Home
     },
       {
-          path: '/welcome',
-          name: 'Welcome',
-          component: Welcome
+          path: '/cart',
+          name: 'Cart',
+          component: Cart
       },
       {
-          path: '/coins/:id',
-          name: 'Coins',
-          component: Coins
+          path: '/admin',
+          name: 'Admin',
+          component: Index,
+
+          children: [
+              {
+                  path: 'new',
+                  name: 'New',
+                  component: New
+              },
+              {
+                  path: '',
+                  name: 'Products',
+                  component: Products
+              },
+              {
+                  path: 'edit/:id',
+                  name: 'Edit',
+                  component: Edit
+              }
+          ]
       }
   ]
 })
